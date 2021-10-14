@@ -488,6 +488,4 @@ body {
 .footer b {
   color: var(--first-color);
 }
-#contact {
-  display: none;
-}
+

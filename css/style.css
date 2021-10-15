@@ -11,7 +11,7 @@
   --black-color: #000000;
   --black-alpha-color: rgba(0, 0, 0, 0.5);
   --title-color: #333333;
-  --text-color: #222222;
+  --text-color: #555555;
   --font: "Montserrat", sans-serif;
   --max-width: 1200px;
   --menu-height: 4rem;
@@ -76,6 +76,26 @@ img {
 }
 p {
   line-height: 1.6;
+}
+
+/****************Cursor********************/
+@media screen and (min-width: 1024px) {
+  #cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    z-index: 9999;
+    mix-blend-mode: exclusion;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+  }
+  .mini {
+    transform: scale(2);
+  }
 }
 /******************Menu******************/
 .menu {
@@ -179,11 +199,68 @@ p {
 .list-menu.is-active {
   max-height: 80vh;
 }
+
+@media screen and (min-width: 1024px) {
+  .menu {
+    top: 0;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    font-size: 1rem;
+  }
+  .menu h1 {
+    color: var(--white-color);
+    font-size: 1.5rem;
+  }
+  .menu h1 > b {
+    color: var(--first-color);
+  }
+  .menu h1 > b > e {
+    color: var(--white-color);
+  }
+  /*boton-menu-inicio*/
+  .btn-menu {
+    display: none;
+  }
+  /*boton-menu-fin*/
+  .list-menu {
+    display: flex;
+    position: relative;
+    bottom: 0px;
+    top: 0px;
+    right: -100px;
+    background-color: transparent;
+    max-height: 100%;
+    overflow: hidden;
+  }
+  .logo-menu {
+    display: none;
+  }
+  .list-menu > a {
+    text-decoration: none;
+    color: var(--white-color);
+    transition: all 0.5s ease;
+  }
+  .list-menu > a:hover > h2 {
+    background-color: transparent;
+    color: var(--first-color);
+  }
+  .list-menu > a:hover {
+    border-bottom: thin solid var(--first-color);
+  }
+  .list-menu > a > h2 {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}
 /******************Body******************/
 body {
   background-image: url("../img/fondo.gif");
   background-attachment: fixed;
   background-size: cover;
+  cursor: none;
+}
+a {
+  cursor: none;
 }
 /******************Home******************/
 .home {
@@ -195,25 +272,21 @@ body {
   overflow: hidden;
 }
 .logo {
-  width: 50%;
-  backdrop-filter: blur(5px);
-  border: 0.5vw solid var(--white-color);
-  border-radius: 2rem;
-  margin-bottom: 3rem;
-  transition: all 0.4s ease-in;
-  overflow: hidden;
-  animation: logo-animation 1.8s cubic-bezier(0.5, 0, 0.5, 2);
+  margin-bottom: 4rem;
 }
-@keyframes logo-animation {
-  from {
-    width: 80%;
-  }
-  to {
-    width: 50%;
-  }
+.logo h2 {
+  display: none;
 }
-.logo:hover {
-  width: 70%;
+.logo b {
+  color: var(--first-color);
+  font-size: 20vw;
+  transition: all 1s ease;
+}
+.logo b e {
+  color: white;
+}
+.logo:hover b {
+  font-size: 25vw;
 }
 /*Arrow*/
 .arrow > svg {
@@ -276,6 +349,38 @@ body {
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .home {
+    height: 100vh;
+  }
+  .logo {
+    animation: intro-home 1.8s ease;
+  }
+  .logo h2 {
+    display: inline-block;
+    font-size: 8.5vw;
+  }
+  .logo:hover b {
+    font-size: 10vw;
+  }
+  .logo b:hover {
+    font-size: 12vw;
+  }
+  .logo b {
+    font-size: 10vw;
+  }
+  @keyframes intro-home {
+    from {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
 /******************Title*******************/
 .title {
   color: var(--first-color);
@@ -310,11 +415,14 @@ body {
   margin: 2rem;
   border-radius: 2rem;
   width: 35%;
-  filter: grayscale(100%) contrast(94%);
+  filter: grayscale(100%) contrast(94%) invert(5.8%);
 }
 @media screen and (min-width: 600px) {
   .about-me img {
     width: 25%;
+  }
+  .title {
+    font-size: 2.2rem;
   }
   .container-about {
     display: flex;
@@ -328,6 +436,43 @@ body {
 @media screen and (min-width: 700px) {
   .about-me img {
     width: 20%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .section-container {
+    height: 100vh;
+  }
+  .about-me img {
+    width: 18%;
+  }
+  #about-me {
+    background-color: var(--black-color);
+  }
+  .about-me {
+    overflow: visible;
+    width: 80%;
+    max-width: 100%;
+    background-color: transparent;
+  }
+  .about-me p {
+    border-radius: 1rem;
+    padding: 2rem;
+    font-size: 1.5rem;
+    color: var(--white-color);
+    bottom: -16vh;
+  }
+  .title {
+    margin-bottom: 2rem;
+    font-size: 9vw;
+    color: var(--first-color);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .about-me p {
+    font-size: 2rem;
+  }
+  .about-me img {
+    width: 15%;
   }
 }
 /******************Skills******************/
@@ -370,6 +515,18 @@ body {
     width: 15%;
   }
 }
+@media screen and (min-width: 1024px) {
+  .skills {
+    overflow: visible;
+    background-color: transparent;
+    color: var(--white-color);
+  }
+  .skills h2 {
+    margin-bottom: 2rem;
+    font-size: 9vw;
+    color: var(--white-color);
+  }
+}
 /******************Contact*****************/
 .contact {
   background-color: var(--white-color);
@@ -378,6 +535,7 @@ body {
   padding: 1rem;
   text-align: center;
   width: 100%;
+  max-width: 1024px;
 }
 .contact-icon {
   text-decoration: none;
@@ -469,17 +627,80 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+@media screen and (min-width: 1024px) {
+  .contact {
+    overflow: visible;
+    max-width: 100%;
+    background-color: transparent;
+    width: 80%;
+  }
+  #contact {
+    background-color: var(--black-color);
+  }
+  .contact-icon svg {
+    margin-bottom: 8vh;
+    width: 8%;
+    height: 8%;
+    margin-right: 1.5vw;
+    margin-left: 1.5vw;
+  }
+  .contact-form {
+    width: 60%;
+    margin: auto;
+    background-color: transparent;
+  }
+  .input {
+    background-color: transparent;
+    color: var(--white-color);
+    font-weight: bold;
+  }
+  .contact-form textarea {
+    background-color: transparent;
+    color: var(--white-color);
+    font-weight: bold;
+  }
+  .contact-form > * {
+    font-family: var(--font);
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--white-color);
+    width: 100%;
+    border-color: var(--first-color);
+    padding: 0.3rem;
+    border-radius: 5px;
+    cursor: none;
+  }
+  .btn-submit {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .contact-form {
+    width: 40%;
+    margin: auto;
+    background-color: transparent;
+  }
+  .contact-icon svg {
+    margin-bottom: 8vh;
+    width: 5%;
+    height: 5%;
+    margin-right: 1.5vw;
+    margin-left: 1.5vw;
+  }
+}
 /******************Footer******************/
 .footer {
   background-color: var(--white-color);
   border-radius: 1rem;
   color: var(--text-color);
-  padding: 0.5rem;
   text-align: center;
   margin-bottom: 4.5rem;
   margin-left: auto;
   margin-right: auto;
   max-width: 1024px;
+  padding: 1rem;
 }
 .footer-container {
   padding-left: 1rem;
@@ -488,4 +709,11 @@ body {
 .footer b {
   color: var(--first-color);
 }
-
+@media screen and (min-width: 1024px) {
+  .footer {
+    background-color: transparent;
+    color: var(--white-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}

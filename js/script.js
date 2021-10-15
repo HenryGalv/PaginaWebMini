@@ -2,9 +2,8 @@
 ((d) => {
   const $btnMenu = d.getElementById("btn-menu"),
     $listMenu = d.getElementById("list-menu"),
-    $logo = d.querySelector(".logo"),
-    $logoTexto = d.querySelector(".logo-texto"),
-    $logoImg = d.querySelector(".logo-img"),
+    $cursor = d.getElementById("cursor"),
+    $a = d.querySelectorAll("a"),
     $body = d.getElementById("body");
   $btnMenu.addEventListener("click", (e) => {
     $btnMenu.classList.toggle("active");
@@ -17,11 +16,25 @@
       $listMenu.classList.remove("is-active");
     }
   });
-  // d.onmousemove = function (e) {
-  //   var x = -(e.clientX / 10);
-  //   var y = -(e.clientY / 10);
-  //   $body.style.backgroundPosition = x + 'px ' + y + 'px';
-  // };
+  if (window.matchMedia("(min-width: 1024px)").matches) {
+    d.onmousemove = function (e) {
+      var x = -(e.clientX / 10);
+      var y = -(e.clientY / 10);
+      $body.style.backgroundPosition = x + 'px ' + y + 'px';
+      var x2 = e.clientX;
+      var y2 = e.clientY;
+      $cursor.style.left = (x2 - 16) + 'px';
+      $cursor.style.top = (y2 - 16) + 'px'
+    };
+    $a.forEach(a => {
+      a.addEventListener("mouseover", (e) => {
+        $cursor.classList.add("mini");
+      });
+      a.addEventListener("mouseout", (e) => {
+        $cursor.classList.remove("mini");
+      });
+    });
+  }
 })
   (document);
 ((d) => {
